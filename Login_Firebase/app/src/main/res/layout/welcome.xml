@@ -53,6 +53,15 @@
         android:textStyle="bold"
         android:textSize="20dp"/>
 
+    <TextView
+        android:id="@+id/show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show details"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textSize="15dp"/>
+
     <Button
         android:id="@+id/logout"
         android:layout_width="match_parent"

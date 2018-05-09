@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -15,12 +17,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Welcome extends AppCompatActivity {
 
-
     Button logout;
 	Button save;
 	EditText name,age,email;
 	String name1,age1,email1;
     FirebaseAuth firebaseAuth;
+    TextView show;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,26 +31,30 @@ public class Welcome extends AppCompatActivity {
         logout=(Button)findViewById(R.id.logout);
         firebaseAuth=FirebaseAuth.getInstance();
 		save=(Button)findViewById(R.id.ebutton);
-		name=(Button)findViewById(R.id.ename);
-		age=(Button)findViewById(R.id.eage);
-		email=(Button)findViewById(R.id.email);
-		
-		save.setOnClickListener(new View.OnClickListener() {
+		name=(EditText)findViewById(R.id.ename);
+		age=(EditText)findViewById(R.id.eage);
+		email=(EditText)findViewById(R.id.email);
+		show=(TextView)findViewById(R.id.show);
+		show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(getApplicationContext(),User_Profile.class));
+            }
+        });
+				save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 			name1=name.getText().toString();
 			age1=name.getText().toString();
 			email1=name.getText().toString();
                 if(name1.equals("")||age1.equals("")||email1.equals(""))
 				{
 					sendUserValues();
-					Toast.makeText(getApplicationContext, "Added Successfully", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "Added Successfully", Toast.LENGTH_SHORT).show();
 					name.setText("");
 					age.setText("");
 					email.setText("");
 				}
-
 
             }
         });
@@ -74,7 +80,7 @@ public class Welcome extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference(firebaseAuth.getUid());
         UserValues userValues = new UserValues(name1,age1,email1);
-        myRef.setValue(userProfile);
+        myRef.setValue(userValues);
     }
 
 }

@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Sign_Up" />
         <activity android:name=".Welcome" />
-        <activity android:name=".Forgot_Password"></activity>
+        <activity android:name=".Forgot_Password" />
+        <activity android:name=".User_Profile"></activity>
     </application>
 
 </manifest>
